@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=es-docker-cluster
+      #- discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=elasticsearch #,es02,es03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.7.0
+    environment:
+      - SERVER_NAME=kibana.example.org
+      - ELASTICSEARCH_HOSTS=http://elasticsearch.example.org
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.7.0
+    volumes:
+      - ./logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./pipeline/:/usr/share/logstash/pipeline/:ro
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.0.0
+    volumes:
+      - ./filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
