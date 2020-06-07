@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    #container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+
+  dockergen:
+    image: jwilder/docker-gen:latest
+    restart: always
+    #container_name: nginx-proxy-gen
+    depends_on:
+      - nginx
+    command: -config /etc/docker-gen/config
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./dockergen:/etc/docker-gen/:ro
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    #container_name: nginx-proxy-le
+    depends_on:
+      - nginx
+      - dockergen
+    environment:
+      NGINX_PROXY_CONTAINER: webserver_nginx_1
+      NGINX_DOCKER_GEN_CONTAINER: webserver_dockergen_1
+      DEFAULT_EMAIL: ${LETSENCRYPT_EMAIL}
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  ddns:
+    image: davd/docker-ddns:latest
+    restart: always
+    environment:
+      RECORD_TTL: 3600
+      ZONE: ${DDNS_HOST}
+      SHARED_SECRET: ${DDNS_SHARED_SECRET}
+      VIRTUAL_HOST: ${DDNS_HOST},${NAMESERVER_HOST}
+      VIRTUAL_PORT: 8080
+      LETSENCRYPT_HOST: ${DDNS_HOST},${NAMESERVER_HOST}       
+      NAMESERVER_PORT: 53
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "8080:8080"
+    volumes:
+       - ./bind-data:/var/cache/bind
+
+volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+
+# Do not forget to 'docker network create nginx-proxy' before launch, and to add '--network nginx-proxy' to proxied containers. 
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

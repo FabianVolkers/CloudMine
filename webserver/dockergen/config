@@ -1,0 +1,18 @@
+[[config]]
+template = "/etc/docker-gen/templates/nginx.tmpl"
+dest = "/etc/nginx/conf.d/default.conf"
+watch = true
+wait = "5s:30s"
+onlyexposed = true
+
+[[config]]
+template = "/etc/docker-gen/templates/zone.tmpl"
+dest = "/var/cache/named/fra.fabianvolkers.com.zone"
+watch = true
+wait = "5s:30s"
+onlyexposed = true
+
+[config.NotifyContainers]
+webserver_bind_1 = 1  # 1 is a signal number to be sent; here SIGHUP
+webserver_nginx_1 = 1  # a key can be either container name (nginx) or ID
+
