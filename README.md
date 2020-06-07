@@ -38,17 +38,18 @@ This is an overview of services which are supported and functional with this Doc
 https://docs.google.com/document/d/1uG8OLFpA9MtCt-M_BkFxx-WejQnB89aKVtif-tjlils/edit#
 
 ## Powered By
-  [![Nginx](.github/media/nginx-logo.png)](https://hub.docker.com/_/nginx/)
-  [![Let's Encrypt](.github/media/lets-encrypt-logo.png)](https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion)
-  [![Bind9](.github/media/bind-9-logo.png)](https://github.com/dprandzioch/docker-ddns)
-  [![Open LDAP](.github/media/openldap-logo.png)](https://github.com/osixia/docker-openldap)
-  [![PHP LDAP Admin](.github/media/phpldapadmin-logo.jpg)](https://github.com/osixia/docker-phpLDAPadmin)
-  [![Ory Hydra](.github/media/ory-logo.png)](https://www.ory.sh/hydra/)
-  [![Vouch Proxy](.github/media/vouch-logo.png)](https://github.com/vouch/vouch-proxy)
-  [![Grafana](.github/media/grafana-logo.png)](https://grafana.com/)
-  [![Prometheus](.github/media/prometheus-logo.png)](https://prometheus.io/)
-  [![ELK Stack](.github/media/elk-stack-logo.png)](https://www.elastic.co/elastic-stack)
-  [![Nextcloud](.github/media/nextcloud-logo.jpg)](https://nextcloud.com/)
+<a href="https://hub.docker.com/_/nginx"><img src=".github/media/nginx-logo.png" alt-text="nginx-logo" height="100px"/></a>
+<a href="https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion"><img src=".github/media/lets-encrypt-logo.png" alt-text="letsencrypt-logo" height="100px"/></a>
+<a href="https://github.com/dprandzioch/docker-ddns"><img src=".github/media/bind-9-logo.png" alt-text="bind9-logo" height="100px"/></a>
+<a href="https://github.com/osixia/docker-openldap"><img src=".github/media/openldap-logo.png" alt-text="openldap-logo" height="100px"/></a>
+<a href="https://github.com/osixia/docker-phpLDAPadmin"><img src=".github/media/phpldapadmin-logo.jpg" alt-text="php-ldap-admin-logo" height="100px"/></a>
+<a href="https://www.ory.sh/hydra/"><img src=".github/media/ory-logo.png" alt-text="ory-logo" height="100px"/></a>
+<a href="https://github.com/vouch/vouch-proxy"><img src=".github/media/vouch-logo.png" alt-text="vouch-logo" height="100px"/></a>
+<a href="https://grafana.com/"><img src=".github/media/grafana-logo.png" alt-text="grafana-logo" height="100px"/></a>
+<a href="https://prometheus.io/"><img src=".github/media/prometheus-logo.png" alt-text="prometheus-logo" height="100px"/></a>
+<a href="https://www.elastic.co/elastic-stack"><img src=".github/media/elk-stack-logo.png" alt-text="elastic-stack-logo" height="100px"/></a>
+<a href="https://nextcloud.com/"><img src=".github/media/nextcloud-logo.jpg" alt-text="nextcloud-logo" height="100px"/></a>
+
 - https://github.com/jwilder/docker-gen
 - https://github.com/i-core/werther
 - https://github.com/pulsejet/nextcloud-oidc-login
