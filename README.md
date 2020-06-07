@@ -12,6 +12,7 @@ A curated collection of Free and Open Source Software to power your own private 
   - [Mattermost](#mattermost)
   - [Jitsi](#jitsi)
   - [Monitoring & Logging](#monitoring--logging)
+- [Quickstart](#quickstart)
 - [Resources](#resources)
 - [Powered By](#powered-by)
 
@@ -20,10 +21,15 @@ A curated collection of Free and Open Source Software to power your own private 
 This is an overview of services which are supported and functional with this Docker setup.
 
 ### Webserver
+We use Nginx as a reverse proxy to each of the other services. Combined with Let's Encrypt and the Docker-Gen container, this enables automated configuration using solely Environment Variables. Additionally, we run a Nameserver with Dynamic DNS Service using Bind9 and docker-ddns.
+More information as well as detailed setup instructions can be found [here](webserver).
 
 ### Autentication & User Management
+We use OpenLDAP as a user backend. Combined with Ory Hydra and Werther, we also have a working OpenID Connect Service using OAuth 2.0. The Vouch Proxy Service enables us to use the nginx auth_request module to protect any service, regardless of OpenID Connect support.
+More information as well as detailed setup instructions can be found [here](authentication).
 
 ### Nextcloud
+More information as well as detailed setup instructions can be found [here](nextcloud).
 
 ### Mail
 
@@ -33,11 +39,27 @@ This is an overview of services which are supported and functional with this Doc
 
 ### Monitoring & Logging
 
+## Quickstart
+
+1. Clone this GitHub repository to your VM/VPS/Home Server.
+   ```bash
+   git clone https://github.com/FabianVolkers/docker-compose.git
+   ```
+2. Each of the main categories has their own Docker-Compose file. This makes it easier to selectively enable/disable services and modifiy everything to your need. We will start by deploying the webserver project, since all web-facing services rely on nginx to connect to the internet. All environnment variables that need changing are listed in the `example.env` file. Simply replace the example values with your own and rename the file to `.env` configuration that needs to be changed. Afterwards all you have to do is create the `nginx-proxy` network in docker and run `docker-compose up -d`, and you are good to go.
+   ```bash
+   cd docker-compose/webserver
+   cp example.env .env
+   sudo docker network create nginx-proxy
+   sudo docker-compose up -d
+   ```
+3. Repeat these steps for each of the services you would like to host. Keep in mind that some of the other services rely on config files to run properly. All required files are present in the repository.
+
 ## Resources
 
 https://docs.google.com/document/d/1uG8OLFpA9MtCt-M_BkFxx-WejQnB89aKVtif-tjlils/edit#
 
 ## Powered By
+<a href="https://docker.com/"><img src=".github/media/docker-logo.png" alt-text="docker-logo" height="100px"/></a>
 <a href="https://hub.docker.com/_/nginx"><img src=".github/media/nginx-logo.png" alt-text="nginx-logo" height="100px"/></a>
 <a href="https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion"><img src=".github/media/lets-encrypt-logo.png" alt-text="letsencrypt-logo" height="100px"/></a>
 <a href="https://github.com/dprandzioch/docker-ddns"><img src=".github/media/bind-9-logo.png" alt-text="bind9-logo" height="100px"/></a>
