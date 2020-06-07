@@ -1,4 +1,4 @@
-# Free and (mostly) Open Source Private Cloud <!-- omit in TOC -->
+# CloudMine <!-- omit in TOC -->
 
 A curated collection of Free and Open Source Software to power your own private cloud.
 
@@ -15,6 +15,8 @@ A curated collection of Free and Open Source Software to power your own private 
 - [Quickstart](#quickstart)
 - [Resources](#resources)
 - [Powered By](#powered-by)
+  - [User facing services](#user-facing-services)
+  - [Backbone Services](#backbone-services)
 
 ## Services
 
@@ -59,6 +61,10 @@ More information as well as detailed setup instructions can be found [here](next
 https://docs.google.com/document/d/1uG8OLFpA9MtCt-M_BkFxx-WejQnB89aKVtif-tjlils/edit#
 
 ## Powered By
+### User facing services
+<a href="https://grafana.com/"><img src=".github/media/grafana-logo.png" alt-text="grafana-logo" height="100px"/></a>
+<a href="https://nextcloud.com/"><img src=".github/media/nextcloud-logo.jpg" alt-text="nextcloud-logo" height="100px"/></a>
+### Backbone Services
 <a href="https://docker.com/"><img src=".github/media/docker-logo.png" alt-text="docker-logo" height="100px"/></a>
 <a href="https://hub.docker.com/_/nginx"><img src=".github/media/nginx-logo.png" alt-text="nginx-logo" height="100px"/></a>
 <a href="https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion"><img src=".github/media/lets-encrypt-logo.png" alt-text="letsencrypt-logo" height="100px"/></a>
@@ -67,10 +73,8 @@ https://docs.google.com/document/d/1uG8OLFpA9MtCt-M_BkFxx-WejQnB89aKVtif-tjlils/
 <a href="https://github.com/osixia/docker-phpLDAPadmin"><img src=".github/media/phpldapadmin-logo.jpg" alt-text="php-ldap-admin-logo" height="100px"/></a>
 <a href="https://www.ory.sh/hydra/"><img src=".github/media/ory-logo.png" alt-text="ory-logo" height="100px"/></a>
 <a href="https://github.com/vouch/vouch-proxy"><img src=".github/media/vouch-logo.png" alt-text="vouch-logo" height="100px"/></a>
-<a href="https://grafana.com/"><img src=".github/media/grafana-logo.png" alt-text="grafana-logo" height="100px"/></a>
 <a href="https://prometheus.io/"><img src=".github/media/prometheus-logo.png" alt-text="prometheus-logo" height="100px"/></a>
 <a href="https://www.elastic.co/elastic-stack"><img src=".github/media/elk-stack-logo.png" alt-text="elastic-stack-logo" height="100px"/></a>
-<a href="https://nextcloud.com/"><img src=".github/media/nextcloud-logo.jpg" alt-text="nextcloud-logo" height="100px"/></a>
 
 - https://github.com/jwilder/docker-gen
 - https://github.com/i-core/werther
